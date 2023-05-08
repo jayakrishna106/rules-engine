@@ -1,0 +1,14 @@
+<breakfast_menu>
+    <food>
+        <price>$5.95</price>
+        <name test="asdads" value="1">Belgian Waffles</name>
+        <description>Two of our famous Belgian Waffles with plenty of real maple syrup</description>
+        <calories>650</calories>
+    </food>
+    <food>
+        <name test="asdads1" value="1">Belgian Waffles</name>
+        <price>$5.96</price>
+        <description>2wo of our famous Belgian Waffles with plenty of real maple syrup</description>
+        <calories>660</calories>
+    </food>
+</breakfast_menu>
