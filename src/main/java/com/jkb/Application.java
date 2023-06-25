@@ -1,13 +1,15 @@
 package com.jkb;
 
-import com.jkb.xml.XMLService;
-import com.jkb.xml.XmlServiceImpl;
-import org.dom4j.Document;
-import org.dom4j.DocumentHelper;
-import org.dom4j.Element;
-import org.dom4j.io.OutputFormat;
-import org.dom4j.io.XMLWriter;
+import com.netflix.discovery.EurekaClient;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -20,52 +22,57 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 
-//@SpringBootApplication
-@ComponentScan(value = "jkb", lazyInit = true)
+@SpringBootApplication
+@Configuration
+@EnableDiscoveryClient
+@EnableEurekaClient
+@ComponentScan(value = "com.jkb", lazyInit = true)
 public class Application {
+    @Value("${spring.application.name}")
+    private String appName;
 
     public static void main(String[] args) throws Exception {
 
-        XMLService xmlService = new XmlServiceImpl();
-        xmlService.buildXml();
-        xmlGenerator();
-        test();
-//        new SpringApplicationBuilder(Application.class)
-//                .run(args);
+//        XMLService xmlService = new XmlServiceImpl();
+//        xmlService.buildXml();
+//        xmlGenerator();
+//        test();
+        new SpringApplicationBuilder(Application.class)
+                .run(args);
     }
 
-
-
-    public static void xmlGenerator(){
-        try {
-
-            Document document = DocumentHelper.createDocument();
-            //MXML/test/test/@attribute
-            document.createXPath("/MXML/test/test/@attribute");
-
-            Element root = document.addElement( "cars" );
-            Element supercarElement = root.addElement("supercars")
-                    .addAttribute("company", "Ferrai");
-
-            supercarElement.addElement("carname")
-                    .addAttribute("type", "Ferrari 101")
-                    .addText("Ferrari 101");
-
-            supercarElement.addElement("carname")
-                    .addAttribute("type", "sports")
-                    .addText("Ferrari 202");
-
-            // Pretty print the document to System.out
-            OutputFormat format = OutputFormat.createPrettyPrint();
-            XMLWriter writer;
-            writer = new XMLWriter( System.out, format );
-            writer.write( document );
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//
+//
+//    public static void xmlGenerator(){
+//        try {
+//
+//            Document document = DocumentHelper.createDocument();
+//            //MXML/test/test/@attribute
+//            document.createXPath("/MXML/test/test/@attribute");
+//
+//            Element root = document.addElement( "cars" );
+//            Element supercarElement = root.addElement("supercars")
+//                    .addAttribute("company", "Ferrai");
+//
+//            supercarElement.addElement("carname")
+//                    .addAttribute("type", "Ferrari 101")
+//                    .addText("Ferrari 101");
+//
+//            supercarElement.addElement("carname")
+//                    .addAttribute("type", "sports")
+//                    .addText("Ferrari 202");
+//
+//            // Pretty print the document to System.out
+//            OutputFormat format = OutputFormat.createPrettyPrint();
+//            XMLWriter writer;
+//            writer = new XMLWriter( System.out, format );
+//            writer.write( document );
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 
     public static void test()  {
