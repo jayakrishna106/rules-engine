@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+    <employee>
+        <id>30123</id>
+        <name>Ben</name>
+        <location>Toronto</location>
+    </employee>
+    <employee>
+        <id>30124</id>
+        <name>Bens</name>
+        <location>Torontos</location>
+    </employee>
+    <employee>
+        <id>30125</id>
+        <name>Bensd</name>
+        <location>Torontosd</location>
+    </employee>
+</data>
